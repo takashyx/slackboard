@@ -1,0 +1,33 @@
+<%= form_for(@starred_post) do |f| %>
+  <% if @starred_post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@starred_post.errors.count, "error") %> prohibited this starred_post from being saved:</h2>
+
+      <ul>
+      <% @starred_post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :post_type %><br>
+    <%= f.text_field :post_type %>
+  </div>
+  <div class="field">
+    <%= f.label :ts %><br>
+    <%= f.text_field :ts %>
+  </div>
+  <div class="field">
+    <%= f.label :user %><br>
+    <%= f.text_field :user %>
+  </div>
+  <div class="field">
+    <%= f.label :text %><br>
+    <%= f.text_area :text %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

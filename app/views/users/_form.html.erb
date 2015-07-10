@@ -1,0 +1,89 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :deleted %><br>
+    <%= f.check_box :deleted %>
+  </div>
+  <div class="field">
+    <%= f.label :color %><br>
+    <%= f.text_field :color %>
+  </div>
+  <div class="field">
+    <%= f.label :profile_first_name %><br>
+    <%= f.text_field :profile_first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :profile_last_name %><br>
+    <%= f.text_field :profile_last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :profile_real_name %><br>
+    <%= f.text_field :profile_real_name %>
+  </div>
+  <div class="field">
+    <%= f.label :profile_email %><br>
+    <%= f.text_field :profile_email %>
+  </div>
+  <div class="field">
+    <%= f.label :profile_skype %><br>
+    <%= f.text_field :profile_skype %>
+  </div>
+  <div class="field">
+    <%= f.label :profile_phone %><br>
+    <%= f.text_field :profile_phone %>
+  </div>
+  <div class="field">
+    <%= f.label :profile_image_24 %><br>
+    <%= f.text_field :profile_image_24 %>
+  </div>
+  <div class="field">
+    <%= f.label :profile_image_32 %><br>
+    <%= f.text_field :profile_image_32 %>
+  </div>
+  <div class="field">
+    <%= f.label :profile_image_48 %><br>
+    <%= f.text_field :profile_image_48 %>
+  </div>
+  <div class="field">
+    <%= f.label :profile_image_72 %><br>
+    <%= f.text_field :profile_image_72 %>
+  </div>
+  <div class="field">
+    <%= f.label :profile_image_192 %><br>
+    <%= f.text_field :profile_image_192 %>
+  </div>
+  <div class="field">
+    <%= f.label :is_admin %><br>
+    <%= f.check_box :is_admin %>
+  </div>
+  <div class="field">
+    <%= f.label :is_owner %><br>
+    <%= f.check_box :is_owner %>
+  </div>
+  <div class="field">
+    <%= f.label :has_files %><br>
+    <%= f.check_box :has_files %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

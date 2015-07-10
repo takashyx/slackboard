@@ -1,0 +1,65 @@
+<%= form_for(@channel) do |f| %>
+  <% if @channel.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@channel.errors.count, "error") %> prohibited this channel from being saved:</h2>
+
+      <ul>
+      <% @channel.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :ch_id %><br>
+    <%= f.text_field :ch_id %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :created %><br>
+    <%= f.number_field :created %>
+  </div>
+  <div class="field">
+    <%= f.label :creator %><br>
+    <%= f.text_field :creator %>
+  </div>
+  <div class="field">
+    <%= f.label :is_archived %><br>
+    <%= f.check_box :is_archived %>
+  </div>
+  <div class="field">
+    <%= f.label :num_members %><br>
+    <%= f.number_field :num_members %>
+  </div>
+  <div class="field">
+    <%= f.label :topic_value %><br>
+    <%= f.text_field :topic_value %>
+  </div>
+  <div class="field">
+    <%= f.label :topic_creator %><br>
+    <%= f.text_field :topic_creator %>
+  </div>
+  <div class="field">
+    <%= f.label :topic_last_set %><br>
+    <%= f.number_field :topic_last_set %>
+  </div>
+  <div class="field">
+    <%= f.label :purpose_value %><br>
+    <%= f.text_field :purpose_value %>
+  </div>
+  <div class="field">
+    <%= f.label :purpose_creator %><br>
+    <%= f.text_field :purpose_creator %>
+  </div>
+  <div class="field">
+    <%= f.label :purpose_last_set %><br>
+    <%= f.number_field :purpose_last_set %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

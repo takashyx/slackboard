@@ -1,0 +1,47 @@
+<h1>Listing channels</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ch</th>
+      <th>Name</th>
+      <th>Created</th>
+      <th>Creator</th>
+      <th>Is archived</th>
+      <th>Num members</th>
+      <th>Topic value</th>
+      <th>Topic creator</th>
+      <th>Topic last set</th>
+      <th>Purpose value</th>
+      <th>Purpose creator</th>
+      <th>Purpose last set</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @channels.each do |channel| %>
+      <tr>
+        <td><%= channel.ch_id %></td>
+        <td><%= channel.name %></td>
+        <td><%= channel.created %></td>
+        <td><%= channel.creator %></td>
+        <td><%= channel.is_archived %></td>
+        <td><%= channel.num_members %></td>
+        <td><%= channel.topic_value %></td>
+        <td><%= channel.topic_creator %></td>
+        <td><%= channel.topic_last_set %></td>
+        <td><%= channel.purpose_value %></td>
+        <td><%= channel.purpose_creator %></td>
+        <td><%= channel.purpose_last_set %></td>
+        <td><%= link_to 'Show', channel %></td>
+        <td><%= link_to 'Edit', edit_channel_path(channel) %></td>
+        <td><%= link_to 'Destroy', channel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Channel', new_channel_path %>

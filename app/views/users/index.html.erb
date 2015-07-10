@@ -1,0 +1,59 @@
+<h1>Listing users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Name</th>
+      <th>Deleted</th>
+      <th>Color</th>
+      <th>Profile first name</th>
+      <th>Profile last name</th>
+      <th>Profile real name</th>
+      <th>Profile email</th>
+      <th>Profile skype</th>
+      <th>Profile phone</th>
+      <th>Profile image 24</th>
+      <th>Profile image 32</th>
+      <th>Profile image 48</th>
+      <th>Profile image 72</th>
+      <th>Profile image 192</th>
+      <th>Is admin</th>
+      <th>Is owner</th>
+      <th>Has files</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.user_id %></td>
+        <td><%= user.name %></td>
+        <td><%= user.deleted %></td>
+        <td><%= user.color %></td>
+        <td><%= user.profile_first_name %></td>
+        <td><%= user.profile_last_name %></td>
+        <td><%= user.profile_real_name %></td>
+        <td><%= user.profile_email %></td>
+        <td><%= user.profile_skype %></td>
+        <td><%= user.profile_phone %></td>
+        <td><%= user.profile_image_24 %></td>
+        <td><%= user.profile_image_32 %></td>
+        <td><%= user.profile_image_48 %></td>
+        <td><%= user.profile_image_72 %></td>
+        <td><%= user.profile_image_192 %></td>
+        <td><%= user.is_admin %></td>
+        <td><%= user.is_owner %></td>
+        <td><%= user.has_files %></td>
+        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User', new_user_path %>

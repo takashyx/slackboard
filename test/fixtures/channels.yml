@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ch_id: MyString
+  name: MyString
+  created: 1
+  creator: MyString
+  is_archived: false
+  num_members: 1
+  topic_value: MyString
+  topic_creator: MyString
+  topic_last_set: 1
+  purpose_value: MyString
+  purpose_creator: MyString
+  purpose_last_set: 1
+
+two:
+  ch_id: MyString
+  name: MyString
+  created: 1
+  creator: MyString
+  is_archived: false
+  num_members: 1
+  topic_value: MyString
+  topic_creator: MyString
+  topic_last_set: 1
+  purpose_value: MyString
+  purpose_creator: MyString
+  purpose_last_set: 1

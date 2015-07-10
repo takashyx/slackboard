@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: MyString
+  name: MyString
+  deleted: false
+  color: MyString
+  profile_first_name: MyString
+  profile_last_name: MyString
+  profile_real_name: MyString
+  profile_email: MyString
+  profile_skype: MyString
+  profile_phone: MyString
+  profile_image_24: MyString
+  profile_image_32: MyString
+  profile_image_48: MyString
+  profile_image_72: MyString
+  profile_image_192: MyString
+  is_admin: false
+  is_owner: false
+  has_files: false
+
+two:
+  user_id: MyString
+  name: MyString
+  deleted: false
+  color: MyString
+  profile_first_name: MyString
+  profile_last_name: MyString
+  profile_real_name: MyString
+  profile_email: MyString
+  profile_skype: MyString
+  profile_phone: MyString
+  profile_image_24: MyString
+  profile_image_32: MyString
+  profile_image_48: MyString
+  profile_image_72: MyString
+  profile_image_192: MyString
+  is_admin: false
+  is_owner: false
+  has_files: false

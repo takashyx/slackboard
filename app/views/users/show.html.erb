@@ -1,0 +1,94 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user.user_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Deleted:</strong>
+  <%= @user.deleted %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @user.color %>
+</p>
+
+<p>
+  <strong>Profile first name:</strong>
+  <%= @user.profile_first_name %>
+</p>
+
+<p>
+  <strong>Profile last name:</strong>
+  <%= @user.profile_last_name %>
+</p>
+
+<p>
+  <strong>Profile real name:</strong>
+  <%= @user.profile_real_name %>
+</p>
+
+<p>
+  <strong>Profile email:</strong>
+  <%= @user.profile_email %>
+</p>
+
+<p>
+  <strong>Profile skype:</strong>
+  <%= @user.profile_skype %>
+</p>
+
+<p>
+  <strong>Profile phone:</strong>
+  <%= @user.profile_phone %>
+</p>
+
+<p>
+  <strong>Profile image 24:</strong>
+  <%= @user.profile_image_24 %>
+</p>
+
+<p>
+  <strong>Profile image 32:</strong>
+  <%= @user.profile_image_32 %>
+</p>
+
+<p>
+  <strong>Profile image 48:</strong>
+  <%= @user.profile_image_48 %>
+</p>
+
+<p>
+  <strong>Profile image 72:</strong>
+  <%= @user.profile_image_72 %>
+</p>
+
+<p>
+  <strong>Profile image 192:</strong>
+  <%= @user.profile_image_192 %>
+</p>
+
+<p>
+  <strong>Is admin:</strong>
+  <%= @user.is_admin %>
+</p>
+
+<p>
+  <strong>Is owner:</strong>
+  <%= @user.is_owner %>
+</p>
+
+<p>
+  <strong>Has files:</strong>
+  <%= @user.has_files %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
