@@ -6,6 +6,8 @@ gem 'groupdate'
 
 gem 'chartkick'
 
+gem 'bootstrap-sass'
+
 gem 'rails_admin'
 
 gem 'better_errors'
@@ -45,9 +47,18 @@ gem 'spring',        group: :development
 # Use unicorn as the app server
 gem 'unicorn'
 
+gem 'io-console', '0.4.2'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+group :deployment do
+    gem 'capistrano', '~> 3.2.1'
+    gem 'capistrano-rails'
+    gem 'capistrano-bundler'
+    gem 'capistrano-rvm'
+    gem 'capistrano3-unicorn'
+end
