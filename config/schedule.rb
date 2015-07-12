@@ -25,9 +25,9 @@ set :environment, :production
 every 1.day, :at => '4:30 am' do
   rake "slack:update_channels"
   rake "slack:update_users"
+  rake "slack:update_stars"
 end
 
-every :hour do
+every '*/30 * * * *' do
   rake "slack:update_posts"
-  rake "slack:update_stars"
 end
