@@ -1,8 +1,8 @@
 <h1>Per Channel(2 weeks)</h1>
-<%= line_chart @perchannel_chart_data, height: "1000px" %>
+<%= line_chart :perchannel_chart_data, height: "1000px" %>
 
 <h1>Per User (2 weeks)</h1>
-<%= line_chart @peruser_chart_data, height: "1000px" %>
+<%= line_chart :peruser_chart_data, height: "1000px" %>
 
 <%= link_to "admin", rails_admin_path %>
 </ul>

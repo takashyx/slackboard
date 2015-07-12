@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 
   resources :channels
 
+  get "peruser_chart_data" => "posts#peruser_chart_data"
+  get "perchannel_chart_data" => "posts#perchannel_chart_data"
+
   root "home#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
