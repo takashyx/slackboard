@@ -69,13 +69,39 @@ class PostsController < ApplicationController
     }
     render json: perchannel_data
   end
+
   def peruser_chart_data
     peruser_data = Array.new
     peruser_data.push({ name:"all data", data: Post.where(:ts_date => 2.week.ago...Time.now).group_by_day(:ts_date).order('ts_date ASC').count })
     User.all.each{|u|
       peruser_data.push({name:u.name+"("+u.profile_real_name+")", data: Post.where(user: u.user_id, :ts_date => 2.week.ago...Time.now).group_by_day(:ts_date).order('ts_date ASC').count })
     }
-    render json: peruser_data.chart_json
+    render json: peruser_data
+  end
+
+  def perweekday_chart_data
+
+    perweekday_data = Array.new
+
+    weekdays = 0..6
+    weekdays_table = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+
+    Channel.all.each{|c|
+
+      per_data = Hash.new
+      weekdays_count = [0, 0, 0, 0, 0, 0, 0]
+
+      posts = Post.where(channel_id: c.ch_id, :ts_date => 1.month.ago...Time.now).group_by_day(:ts_date).order('ts_date ASC').count
+      posts.each{|p|
+        weekdays_count[Time.at(p[0]).wday] += p[1]
+      }
+      weekdays.each{|w|
+        per_data[weekdays_table.at(w)] = weekdays_count.at(w)
+      }
+
+      perweekday_data.push({name:c.name, data: per_data})
+    }
+    render json: perweekday_data
   end
 
   private

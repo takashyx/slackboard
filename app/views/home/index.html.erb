@@ -1,9 +1,13 @@
-<h1>Per Channel(2 weeks)</h1>
+    <h1>Post Count</h1>
+
+<h2>Per Channel(2 weeks)</h2>
 <%= line_chart :perchannel_chart_data, height: "1000px" %>
 
-<h1>Per User (2 weeks)</h1>
+<h2>Per User (2 weeks)</h2>
 <%= line_chart :peruser_chart_data, height: "1000px" %>
 
-<%= link_to "admin", rails_admin_path %>
-</ul>
+<h2>Per Channel & Weekday(1 month)</h2>
+<%= line_chart :perweekday_chart_data, discrete: true, height: "1000px" %>
+
+<h2><%= link_to "admin", rails_admin_path %></h2>
 
