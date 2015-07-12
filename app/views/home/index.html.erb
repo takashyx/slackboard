@@ -7,7 +7,10 @@
 <%= line_chart :peruser_chart_data, height: "1000px" %>
 
 <h2>Per Channel & Weekday(1 month)</h2>
-<%= line_chart :perweekday_chart_data, discrete: true, height: "1000px" %>
+<%= line_chart :perchannel_weekday_chart_data, discrete: true, height: "1000px" %>
+
+<h2>Per User & Weekday(1 month)</h2>
+<%= line_chart :peruser_weekday_chart_data, discrete: true, height: "1000px" %>
 
 <h2><%= link_to "admin", rails_admin_path %></h2>
 

@@ -12,7 +12,9 @@ Rails.application.routes.draw do
 
   get "peruser_chart_data" => "posts#peruser_chart_data"
   get "perchannel_chart_data" => "posts#perchannel_chart_data"
-  get "perweekday_chart_data" => "posts#perweekday_chart_data"
+
+  get "peruser_weekday_chart_data" => "posts#peruser_weekday_chart_data"
+  get "perchannel_weekday_chart_data" => "posts#perchannel_weekday_chart_data"
 
   root "home#index"
 
