@@ -27,7 +27,7 @@ every 1.day, :at => '4:30 am' do
   rake "slack:update_users"
 end
 
-every 1.day, :at => '4:35 am' do
+every :hour do
   rake "slack:update_posts"
   rake "slack:update_stars"
 end
