@@ -65,8 +65,15 @@ namespace :slack do
       puts 'No channels listed. please perform "rake handle_channel_info:update_list_of_channels" first.'
     else
       for ch in Channel.all
-        # TODO: read token from config file
-        uri=get_json("https://slack.com/api/channels.history?token=" + Rails.application.secrets.slack_token + "&channel="+ch['ch_id'])
+        final_post = Post.where(:channel_id => ch.ch_id).order('ts DESC').limit(1)
+        puts "final_post:"
+        puts final_post
+        if final_post.nil? or final_post.empty?
+          uri=get_json("https://slack.com/api/channels.history?token=" + Rails.application.secrets.slack_token + "&channel="+ch['ch_id'])
+        else
+          final_ts_per_channel = final_post[0]["ts"]
+          uri=get_json("https://slack.com/api/channels.history?token=" + Rails.application.secrets.slack_token + "&channel="+ch['ch_id'] + "&oldest=" + final_ts_per_channel.to_s)
+        end
         if uri['ok'] == true then
 
           puts '=============='
