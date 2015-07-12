@@ -60,6 +60,7 @@ namespace :slack do
 
   desc "update posts"
   task :update_posts => :environment do
+
     if Channel.count == 0 then
       puts 'No channels listed. please perform "rake handle_channel_info:update_list_of_channels" first.'
     else
@@ -80,10 +81,11 @@ namespace :slack do
 
               Post.create(
                  post_type: m['type'],
+                 channel_id: ch['ch_id'],
                  user: m['user'],
                  text: m['text'],
                  ts:   m['ts'],
-                 ts_date: Time.at(m['ts'].split(".",2)[0].to_i)
+                 ts_date: Time.at(m['ts'].to_i)
               )
 
             end
@@ -106,6 +108,7 @@ namespace :slack do
 
   desc "update stars"
   task :update_stars => :environment do
+
     # TODO: read token from config file
     for u in User.all
       uri=get_json("https://slack.com/api/stars.list?token=" + Rails.application.secrets.slack_token + "&user="+u['user_id'])
@@ -127,7 +130,7 @@ namespace :slack do
                                  user: m['message']['user'],
                                  text: m['message']['text'],
                                  ts:   m['message']['ts'],
-                                 ts_date: Time.at(m['message']['ts'].split(".",2)[0].to_i),
+                                 ts_date: Time.at(m['message']['ts'].to_i),
                                  starred_by: u['user_id'])
             end
 

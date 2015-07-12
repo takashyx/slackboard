@@ -4,15 +4,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.where(:ts_date => 1.month.ago...Time.now)
-
-    data = Array.new
-    data.push({ name:"all data", data: Post.where(:ts_date => 1.month.ago...Time.now).group_by_day(:ts_date).order('ts_date ASC').count })
-    User.all.each{|u|
-      data.push({name:u.name+"("+u.profile_real_name+")", data: Post.where(user: u.user_id, :ts_date => 1.month.ago...Time.now).group_by_day(:ts_date).order('ts_date ASC').count })
-    }
-    @chart_data = data
-
+    @posts = Post.where(:ts_date => 2.week.ago...Time.now)
   end
 
   # GET /posts/1
