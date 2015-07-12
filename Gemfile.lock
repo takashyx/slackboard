@@ -215,7 +215,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
   groupdate
-  io-console (= 0.4.2)
+  io-console
   jbuilder (~> 2.0)
   jquery-rails
   mysql2

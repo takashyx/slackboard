@@ -47,7 +47,7 @@ gem 'spring',        group: :development
 # Use unicorn as the app server
 gem 'unicorn'
 
-gem 'io-console', '0.4.2'
+gem 'io-console'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
