@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'home/index'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :starred_posts
 
@@ -7,6 +9,8 @@ Rails.application.routes.draw do
   resources :posts
 
   resources :channels
+
+  root "home#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
