@@ -61,9 +61,15 @@ class PostsController < ApplicationController
     end
   end
 
+
+  def chart_data
+    perchannel_data= Array.new
+    perchannel_data.push({ name:"All Posts", data: Post.where(:ts_date => 2.week.ago...Time.now).group_by_day(:ts_date).order('ts_date ASC').count })
+    render json: perchannel_data
+  end
+
   def perchannel_chart_data
     perchannel_data= Array.new
-    perchannel_data.push({ name:"all data", data: Post.where(:ts_date => 2.week.ago...Time.now).group_by_day(:ts_date).order('ts_date ASC').count })
     Channel.all.each{|c|
       perchannel_data.push({name:c.name, data: Post.where(channel_id: c.ch_id, :ts_date => 2.week.ago...Time.now).group_by_day(:ts_date).order('ts_date ASC').count })
     }
@@ -72,7 +78,6 @@ class PostsController < ApplicationController
 
   def peruser_chart_data
     peruser_data = Array.new
-    peruser_data.push({ name:"all data", data: Post.where(:ts_date => 2.week.ago...Time.now).group_by_day(:ts_date).order('ts_date ASC').count })
     User.all.each{|u|
       peruser_data.push({name:u.name+"("+u.profile_real_name+")", data: Post.where(user: u.user_id, :ts_date => 2.week.ago...Time.now).group_by_day(:ts_date).order('ts_date ASC').count })
     }
