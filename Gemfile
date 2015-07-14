@@ -62,3 +62,6 @@ group :deployment do
     gem 'capistrano-rvm'
     gem 'capistrano3-unicorn'
 end
+
+gem 'squasher'
+

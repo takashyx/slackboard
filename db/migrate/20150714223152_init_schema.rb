@@ -26,6 +26,7 @@ class InitSchema < ActiveRecord::Migration
       t.datetime "created_at"
       t.datetime "updated_at"
       t.datetime "ts_date"
+      t.string   "channel_id"
     end
     
     create_table "starred_posts", force: true do |t|
