@@ -13,3 +13,7 @@
  *
  *= require_self
  */
+
+.navbar-fixed-top-spacer {
+    height: 40px;
+}
