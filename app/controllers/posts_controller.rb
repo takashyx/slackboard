@@ -84,6 +84,29 @@ class PostsController < ApplicationController
     render json: peruser_data
   end
 
+  def perweekday_chart_data
+
+    perweekday_data = Array.new
+
+    weekdays = 0..6
+    weekdays_table = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+
+    per_data = Hash.new
+    weekdays_count = [0, 0, 0, 0, 0, 0, 0]
+
+    posts = Post.where(:ts_date => 1.month.ago...Time.now).group_by_day(:ts_date).order('ts_date ASC').count
+    posts.each{|p|
+      weekdays_count[Time.at(p[0]).wday] += p[1]
+    }
+    weekdays.each{|w|
+      per_data[weekdays_table.at(w)] = weekdays_count.at(w)
+    }
+
+    perweekday_data.push({name:"All Posts", data: per_data})
+
+  render json: perweekday_data
+  end
+
   def perchannel_weekday_chart_data
 
     perweekday_data = Array.new
