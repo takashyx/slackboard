@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150712140359) do
+ActiveRecord::Schema.define(version: 20150714223152) do
 
   create_table "channels", force: true do |t|
     t.string   "ch_id"

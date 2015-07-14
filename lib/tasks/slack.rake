@@ -4,6 +4,14 @@ require 'json'
 
 namespace :slack do
 
+  desc 'For the 1st time crawl'
+  task :first_time_crawl=> :environment do
+    Rake::Task['slack:update_channels'].invoke(:environnmet)
+    Rake::Task['slack:update_users'].invoke(:environnmet)
+    Rake::Task['slack:update_posts'].invoke(:environnmet)
+    Rake::Task['slack:update_stars'].invoke(:environnmet)
+  end
+
   desc 'update channel list'
   task :update_channels => :environment do
     uri = get_json('https://slack.com/api/channels.list?token=' + Rails.application.secrets.slack_token)
@@ -104,7 +112,7 @@ namespace :slack do
       # do it again
 
       # wait for API call for next channel
-      sleep(1)
+      sleep(2)
     end
   end
 
