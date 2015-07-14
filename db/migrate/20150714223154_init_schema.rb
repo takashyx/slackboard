@@ -26,7 +26,7 @@ class InitSchema < ActiveRecord::Migration
       t.datetime "created_at"
       t.datetime "updated_at"
       t.datetime "ts_date"
-      t.string   "channel_id"
+      t.string   "ch_id"
     end
     
     create_table "stars", force: true do |t|
@@ -38,6 +38,7 @@ class InitSchema < ActiveRecord::Migration
       t.datetime "updated_at"
       t.string   "starred_by"
       t.datetime "ts_date"
+      t.string   "ch_id"
     end
     
     create_table "users", force: true do |t|
