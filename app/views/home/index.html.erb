@@ -19,4 +19,14 @@
 <h2>Per User & Weekday</h2>
 <%= line_chart :peruser_weekday_chart_data, discrete: true, height: "600px" %>
 
-<h2><%= link_to "Admin", rails_admin_path %></h2>
+<h1>Hourly Post Count (1 month)</h1>
+<h2>All Posts Per Hour</h2>
+<%= line_chart :perhour_chart_data, discrete: true, height: "600px" %>
+
+<h2>Per Channel & Hour</h2>
+<%= line_chart :perhour_channel_chart_data, discrete: true, height: "600px" %>
+
+<h2>Per User & Hour</h2>
+<%= line_chart :perhour_user_chart_data, discrete: true, height: "600px" %>
+
+<h1><%= link_to "Admin", rails_admin_path %></h1>

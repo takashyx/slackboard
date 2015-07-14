@@ -114,12 +114,12 @@ class PostsController < ApplicationController
     weekdays = 0..6
     weekdays_table = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
-    Channel.all.each{|c|
+    Channel.all.each{|ch|
 
       per_data = Hash.new
       weekdays_count = [0, 0, 0, 0, 0, 0, 0]
 
-      posts = Post.where(channel_id: c.ch_id, :ts_date => 1.month.ago...Time.now).group_by_day(:ts_date).order('ts_date ASC').count
+      posts = Post.where(channel_id: ch.ch_id, :ts_date => 1.month.ago...Time.now).group_by_day(:ts_date).order('ts_date ASC').count
       posts.each{|p|
         weekdays_count[Time.at(p[0]).wday] += p[1]
       }
@@ -127,7 +127,7 @@ class PostsController < ApplicationController
         per_data[weekdays_table.at(w)] = weekdays_count.at(w)
       }
 
-      perweekday_data.push({name:c.name, data: per_data})
+      perweekday_data.push({name:ch.name, data: per_data})
     }
     render json: perweekday_data
   end
@@ -155,6 +155,74 @@ class PostsController < ApplicationController
       perweekday_data.push({name:u.name+"("+u.profile_real_name+")", data: per_data})
     }
     render json: perweekday_data
+  end
+
+  def perhour_chart_data
+
+    perhour_data = Array.new
+
+    hours = Array(5..23).concat(Array(0..4))
+    per_data = Hash.new
+    hours_count = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+
+    posts = Post.where(:ts_date => 1.month.ago...Time.now)
+    posts.each{|p|
+      hours_count[Time.at(p['ts_date']).hour] += 1
+    }
+
+    hours.each{|w|
+      per_data["#{w.to_s}:00-#{(w+1).to_s}:00"] = hours_count.at(w)
+    }
+
+    perhour_data.push({name:"All Posts", data: per_data})
+
+
+    render json: perhour_data
+  end
+
+  def perhour_user_chart_data
+
+    perhour_data = Array.new
+
+    User.all.each{|u|
+
+      hours = Array(5..23).concat(Array(0..4))
+      per_data = Hash.new
+      hours_count = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+
+      posts = Post.where(user: u.user_id, :ts_date => 1.month.ago...Time.now)
+      posts.each{|p|
+        hours_count[Time.at(p['ts_date']).hour] += 1
+      }
+      hours.each{|h|
+        per_data["#{h.to_s}:00-#{(h+1).to_s}:00"] = hours_count.at(h)
+      }
+
+      perhour_data.push({name:"#{u.name}(#{u.profile_real_name})", data: per_data})
+    }
+    render json: perhour_data
+  end
+
+  def perhour_channel_chart_data
+
+    perhour_data = Array.new
+
+    Channel.all.each{|ch|
+
+      hours = Array(5..23).concat(Array(0..4))
+      per_data = Hash.new
+      hours_count = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+
+      posts = Post.where(channel_id: ch.ch_id, :ts_date => 1.month.ago...Time.now)
+      posts.each{|p|
+        hours_count[Time.at(p['ts_date']).hour] += 1
+      }
+      hours.each{|w|
+        per_data["#{w.to_s}:00-#{(w+1).to_s}:00"] = hours_count.at(w)
+      }
+      perhour_data.push({name:ch.name, data: per_data})
+    }
+    render json: perhour_data
   end
 
   private

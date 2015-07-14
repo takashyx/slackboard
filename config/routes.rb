@@ -10,14 +10,19 @@ Rails.application.routes.draw do
 
   resources :channels
 
+  root "home#index"
+
   get "chart_data" => "posts#chart_data"
   get "perweekday_chart_data" => "posts#perweekday_chart_data"
   get "peruser_chart_data" => "posts#peruser_chart_data"
+
   get "perchannel_chart_data" => "posts#perchannel_chart_data"
   get "peruser_weekday_chart_data" => "posts#peruser_weekday_chart_data"
   get "perchannel_weekday_chart_data" => "posts#perchannel_weekday_chart_data"
 
-  root "home#index"
+  get "perhour_chart_data" => "posts#perhour_chart_data"
+  get "perhour_user_chart_data" => "posts#perhour_user_chart_data"
+  get "perhour_channel_chart_data" => "posts#perhour_channel_chart_data"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
