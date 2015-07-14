@@ -8,7 +8,7 @@ class StarredPostsControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:starred_posts)
+    assert_not_nil assigns(:stars)
   end
 
   test "should get new" do
@@ -17,7 +17,7 @@ class StarredPostsControllerTest < ActionController::TestCase
   end
 
   test "should create starred_post" do
-    assert_difference('StarredPost.count') do
+    assert_difference('Star.count') do
       post :create, starred_post: { post_type: @starred_post.post_type, text: @starred_post.text, ts: @starred_post.ts, user: @starred_post.user }
     end
 
@@ -40,7 +40,7 @@ class StarredPostsControllerTest < ActionController::TestCase
   end
 
   test "should destroy starred_post" do
-    assert_difference('StarredPost.count', -1) do
+    assert_difference('Star.count', -1) do
       delete :destroy, id: @starred_post
     end
 

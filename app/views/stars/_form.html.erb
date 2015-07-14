@@ -1,10 +1,10 @@
-<%= form_for(@starred_post) do |f| %>
-  <% if @starred_post.errors.any? %>
+<%= form_for(@star) do |f| %>
+  <% if @star.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@starred_post.errors.count, "error") %> prohibited this starred_post from being saved:</h2>
+      <h2><%= pluralize(@star.errors.count, "error") %> prohibited this starred_post from being saved:</h2>
 
       <ul>
-      <% @starred_post.errors.full_messages.each do |message| %>
+      <% @star.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -26,6 +26,10 @@
   <div class="field">
     <%= f.label :text %><br>
     <%= f.text_area :text %>
+  </div>
+  <div class="field">
+    <%= f.label :ts_date %><br>
+    <%= f.datetime_select :ts_date %>
   </div>
   <div class="actions">
     <%= f.submit %>

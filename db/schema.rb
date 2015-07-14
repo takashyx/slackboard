@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20150714223152) do
     t.string   "channel_id"
   end
 
-  create_table "starred_posts", force: true do |t|
+  create_table "stars", force: true do |t|
     t.string   "post_type"
     t.string   "ts"
     t.string   "user"

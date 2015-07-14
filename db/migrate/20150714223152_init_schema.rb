@@ -29,7 +29,7 @@ class InitSchema < ActiveRecord::Migration
       t.string   "channel_id"
     end
     
-    create_table "starred_posts", force: true do |t|
+    create_table "stars", force: true do |t|
       t.string   "post_type"
       t.string   "ts"
       t.string   "user"

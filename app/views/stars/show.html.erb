@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Post type:</strong>
+  <%= @star.post_type %>
+</p>
+
+<p>
+  <strong>Ts:</strong>
+  <%= @star.ts %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @star.ts_date %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @star.user %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @star.text %>
+</p>
+
+<p>
+  <strong>Ts date:</strong>
+  <%= @star.ts_date %>
+</p>
+
+<%= link_to 'Edit', edit_star_path(@star) %> |
+<%= link_to 'Back', stars_path %>

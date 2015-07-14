@@ -129,12 +129,12 @@ namespace :slack do
 
           # TODO: handle starred channels, files, and so on...
           if m['type'] == 'message'
-            if StarredPost.find_by( ts: m['message']['ts'], starred_by: u['user_id'] ) == nil
+            if Star.find_by( ts: m['message']['ts'], starred_by: u['user_id'] ) == nil
               puts ''
               puts '!!! NEW POST !!!'
               puts ''
 
-              StarredPost.create(
+              Star.create(
                                  post_type: m['type'],
                                  user: m['message']['user'],
                                  text: m['message']['text'],
