@@ -19,7 +19,8 @@ namespace :slack do
 
       uri['channels'].each {|ch|
 
-        if Channel.find_by( ch_id: ch['id'] ) == nil
+        ch_in_db = Channel.find_by( ch_id: ch['id'])
+        if ch_in_db == nil
 
           puts ''
           puts '!!! NEW CHANNEL !!!'
@@ -59,6 +60,19 @@ namespace :slack do
           puts "purpose     : #{ch['purpose']}"
           puts "num_members : #{ch['num_members']}"
           puts '=============='
+
+        else
+          ch_in_db.update(
+              name: ch['name'],
+              is_archived: ch['is_archived'],
+              num_members: ch['num_members'],
+              topic_value: ch['topic']['value'],
+              topic_creator: ch['topic']['creator'],
+              topic_last_set: ch['topic']['last_set'],
+              purpose_value: ch['purpose']['value'],
+              purpose_creator: ch['purpose']['creator'],
+              purpose_last_set: ch['purpose']['last_set']
+          )
         end
       }
     end
@@ -170,7 +184,8 @@ namespace :slack do
 
       uri['members'].each{|u|
 
-        if User.find_by( user_id: u['id'] ) == nil
+        user_in_db = User.find_by( user_id: u['id'] )
+        if user_in_db == nil
 
           puts ''
           puts '!!! NEW USER !!!'
@@ -215,8 +230,28 @@ namespace :slack do
           puts u['profile_image_192']
           puts u['is_admin']
           puts u['is_owner']
-          puts u['has_fields']
+          puts u['has_filds']
           puts '=============='
+        else
+          user_in_db.update(
+              name: u['name'],
+              deleted: u['deleted'],
+              color: u['color'],
+              profile_first_name: u['profile']['first_name'],
+              profile_last_name: u['profile']['last_name'],
+              profile_real_name: u['profile']['real_name'],
+              profile_email: u['profile']['email'],
+              profile_skype: u['profile']['skype'],
+              profile_phone: u['profile']['phone'],
+              profile_image_24: u['profile']['image_24'],
+              profile_image_32: u['profile']['image_32'],
+              profile_image_48: u['profile']['image_48'],
+              profile_image_72: u['profile']['image_72'],
+              profile_image_192: u['profile']['image_192'],
+              is_admin: u['is_admin'],
+              is_owner: u['is_owner'],
+              has_files: u['has_files']
+          )
         end
       }
     end

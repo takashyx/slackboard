@@ -38,11 +38,11 @@
         <td><%= user.profile_email %></td>
         <td><%= user.profile_skype %></td>
         <td><%= user.profile_phone %></td>
-        <td><%= user.profile_image_24 %></td>
-        <td><%= user.profile_image_32 %></td>
-        <td><%= user.profile_image_48 %></td>
-        <td><%= user.profile_image_72 %></td>
-        <td><%= user.profile_image_192 %></td>
+        <td><%= image_tag(user.profile_image_24) %></td>
+        <td><%= image_tag(user.profile_image_32) %></td>
+        <td><%= image_tag(user.profile_image_48) %></td>
+        <td><%= image_tag(user.profile_image_72) %></td>
+        <td><%= image_tag(user.profile_image_192) %></td>
         <td><%= user.is_admin %></td>
         <td><%= user.is_owner %></td>
         <td><%= user.has_files %></td>
