@@ -4,17 +4,14 @@ require 'json'
 
 namespace :slack do
 
-  desc "update channel list"
+  desc 'update channel list'
   task :update_channels => :environment do
-    # TODO: read token from config file
     uri = get_json('https://slack.com/api/channels.list?token=' + Rails.application.secrets.slack_token)
-    if uri["ok"] == true then
+    if uri['ok']
 
-      puts '=============='
+      uri['channels'].each {|ch|
 
-      for ch in uri["channels"]
-
-        if Channel.find_by( ch_id: ch["id"] ) == nil then
+        if Channel.find_by( ch_id: ch['id'] ) == nil
 
           puts ''
           puts '!!! NEW CHANNEL !!!'
@@ -32,53 +29,52 @@ namespace :slack do
             purpose_value: ch['purpose']['value'],
             purpose_creator: ch['purpose']['creator'],
             purpose_last_set: ch['purpose']['last_set'])
+
+          puts ch['id']
+
+          # if id is not in the db
+          # add new
+
+          # TODO handle these info:
+          puts "name        : #{ch['name']}"
+          puts "is_channel  : #{ch['is_channel']}"
+          puts "created     : #{ch['created']}"
+          puts "is_archived : #{ch['is_archived']}"
+          puts "is_general  : #{ch['is_general']}"
+          puts "is_member   : #{ch['is_member']}"
+          puts 'members     :'
+          for m in ch['members']
+            print '- '
+            puts m
+          end
+          puts "topic       : #{ch['topic']}"
+          puts "purpose     : #{ch['purpose']}"
+          puts "num_members : #{ch['num_members']}"
+          puts '=============='
         end
-
-        puts ch["id"]
-
-        # if id is not in the db
-        # add new
-
-        # TODO handle these info:
-        puts ch["name"]
-        puts ch["is_channel"]
-        puts ch["created"]
-        puts ch["is_archived"]
-        puts ch["is_general"]
-        puts ch["is_member"]
-        for m in ch["members"]
-          print "- "
-          puts m
-        end
-        puts ch["topic"]
-        puts ch["purpose"]
-        puts ch["num_members"]
-        puts '=============='
-      end
+      }
     end
   end
 
-  desc "update posts"
+  desc 'update posts'
   task :update_posts => :environment do
 
-    if Channel.count == 0 then
+    if Channel.count == 0
       puts 'No channels listed. please perform "rake handle_channel_info:update_list_of_channels" first.'
     else
-      for ch in Channel.all
+      Channel.all.each {|ch|
         final_post = Post.where(:channel_id => ch.ch_id).order('ts DESC').limit(1)
         if final_post.nil? or final_post.empty?
-          uri=get_json("https://slack.com/api/channels.history?token=" + Rails.application.secrets.slack_token + "&channel="+ch['ch_id'])
+          uri=get_json("https://slack.com/api/channels.history?token=#{Rails.application.secrets.slack_token}&channel=#{ch['ch_id']}")
         else
-          final_ts_per_channel = final_post[0]["ts"]
-          uri=get_json("https://slack.com/api/channels.history?token=" + Rails.application.secrets.slack_token + "&channel="+ch['ch_id'] + "&oldest=" + final_ts_per_channel.to_s)
+          final_ts_per_channel = final_post[0]['ts']
+          uri=get_json("https://slack.com/api/channels.history?token=#{Rails.application.secrets.slack_token}&channel=#{ch['ch_id']}&oldest=#{final_ts_per_channel.to_s}")
         end
-        if uri['ok'] == true then
-
-          puts '=============='
+        if uri['ok']
 
           for m in uri['messages']
 
-            if m['type'] == "message" and Post.find_by( ts: m["ts"] ) == nil then
+            if m['type'] == 'message' and Post.find_by( ts: m['ts'] ) == nil
 
               puts ''
               puts '!!! NEW POST !!!'
@@ -93,39 +89,39 @@ namespace :slack do
                  ts_date: Time.at(m['ts'].to_i)
               )
 
-            end
-            puts m['type']
-            puts m['user']
-            puts m['text']
-            puts m['ts']
-            puts '=============='
+              puts "channel: #{m['channel']}"
+              puts "type   : #{m['type']}"
+              puts "user   : #{m['user']}"
+              puts "text   : #{m['text']}"
+              puts "ts     : #{m['ts']}"
+              puts '=============='
 
+            end
           end
         end
-      end
+      }
       #TODO: if uri['has_more'] == true then
       # do it again
 
       # wait for API call for next channel
-      sleep(3)
+      sleep(1)
     end
   end
 
-  desc "update stars"
+  desc 'update stars'
   task :update_stars => :environment do
 
     # TODO: read token from config file
     for u in User.all
-      uri=get_json("https://slack.com/api/stars.list?token=" + Rails.application.secrets.slack_token + "&user="+u['user_id'])
-      if uri['ok'] == true then
+      uri=get_json("https://slack.com/api/stars.list?token=#{Rails.application.secrets.slack_token}&user=#{u['user_id']}")
 
-        puts '=============='
+      if uri['ok']
 
-        for m in uri['items']
+        uri['items'].each {|m|
 
           # TODO: handle starred channels, files, and so on...
-          if m['type'] == "message" then
-            if StarredPost.find_by( ts: m["message"]["ts"], starred_by: u['user_id'] ) == nil then
+          if m['type'] == 'message'
+            if StarredPost.find_by( ts: m['message']['ts'], starred_by: u['user_id'] ) == nil
               puts ''
               puts '!!! NEW POST !!!'
               puts ''
@@ -137,17 +133,17 @@ namespace :slack do
                                  ts:   m['message']['ts'],
                                  ts_date: Time.at(m['message']['ts'].to_i),
                                  starred_by: u['user_id'])
-            end
 
-            puts m['type']
-            puts m['message']['user']
-            puts m['message']['text']
-            puts m['message']['ts']
-            puts '---'
-            puts u['user_id']
-            puts '=============='
+              puts "type         :#{m['type']}"
+              puts "message.user :#{m['message']['user']}"
+              puts "message.text :#{m['message']['text']}"
+              puts "message.ts   :#{m['message']['ts']}"
+              puts '---'
+              puts "user_id      :#{u['user_id']}"
+              puts '=============='
+            end
           end
-        end
+        }
       end
       # TODO: if uri['has_more'] == true then
       # do it again
@@ -157,19 +153,16 @@ namespace :slack do
     end
   end
 
-  desc "update user list"
+  desc 'update user list'
   task :update_users => :environment do
     # TODO: read token from config file
-    uri = get_json('https://slack.com/api/users.list?token=' + Rails.application.secrets.slack_token)
+    uri = get_json("https://slack.com/api/users.list?token=#{Rails.application.secrets.slack_token}")
 
-    if uri["ok"] == true then
+    if uri['ok']
 
-      puts '=============='
+      uri['members'].each{|u|
 
-      for u in uri["members"]
-
-
-        if User.find_by( user_id: u["id"] ) == nil then
+        if User.find_by( user_id: u['id'] ) == nil
 
           puts ''
           puts '!!! NEW USER !!!'
@@ -192,32 +185,32 @@ namespace :slack do
             is_admin: u['is_admin'],
             is_owner: u['is_owner'],
             has_files: u['has_files'])
+
+          # if id is not in the db
+          # add new
+
+          # TODO handle these info:
+          puts u['id']
+          puts u['name']
+          puts u['deleted']
+          puts u['color']
+          puts u['profile_first_name']
+          puts u['profile_last_name']
+          puts u['profile_real_name']
+          puts u['profile_email']
+          puts u['profile_skype']
+          puts u['profile_phone']
+          puts u['profile_image_24']
+          puts u['profile_image_32']
+          puts u['profile_image_48']
+          puts u['profile_image_72']
+          puts u['profile_image_192']
+          puts u['is_admin']
+          puts u['is_owner']
+          puts u['has_fields']
+          puts '=============='
         end
-
-        # if id is not in the db
-        # add new
-
-        # TODO handle these info:
-        puts u['id']
-        puts u['name']
-        puts u['deleted']
-        puts u['color']
-        puts u['profile_first_name']
-        puts u['profile_last_name']
-        puts u['profile_real_name']
-        puts u['profile_email']
-        puts u['profile_skype']
-        puts u['profile_phone']
-        puts u['profile_iamge_24']
-        puts u['profile_iamge_32']
-        puts u['profile_iamge_48']
-        puts u['profile_iamge_72']
-        puts u['profile_iamge_192']
-        puts u['is_admin']
-        puts u['is_owner']
-        puts u['has_fiels']
-        puts '=============='
-      end
+      }
     end
   end
 end
@@ -243,11 +236,11 @@ def get_json(location, limit = 10)
       warn "redirected to #{location}"
       get_json(location, limit - 1)
     else
-      puts [uri.to_s, response.value].join(" : ")
+      puts [uri.to_s, response.value].join(' : ')
       # handle error
     end
   rescue => e
-    puts [uri.to_s, e.class, e].join(" : ")
+    puts [uri.to_s, e.class, e].join(' : ')
     # handle error
   end
 end
