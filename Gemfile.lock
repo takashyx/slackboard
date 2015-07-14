@@ -68,6 +68,7 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     colorize (0.7.7)
+    commonjs (0.2.7)
     debug_inspector (0.0.2)
     devise (3.5.1)
       bcrypt (~> 3.0)
@@ -100,6 +101,14 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.9.3)
+    less (2.6.0)
+      commonjs (~> 0.2.7)
+    less-rails (2.7.0)
+      actionpack (>= 4.0)
+      less (~> 2.6.0)
+      sprockets (> 2, < 4)
+      tilt
+    libv8 (3.16.14.11)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (2.6.1)
@@ -153,6 +162,7 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    ref (2.0.0)
     remotipart (1.2.1)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
@@ -181,11 +191,20 @@ GEM
       colorize (>= 0.7.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    therubyracer (0.12.2)
+      libv8 (~> 3.16.14.0)
+      ref
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
     turbolinks (2.5.3)
       coffee-rails
+    twitter-bootswatch-rails (3.3.4.0)
+      execjs (~> 2.3, >= 2.3.0)
+      less-rails (~> 2.4)
+      railties (>= 3.1, < 5.0)
+    twitter-bootswatch-rails-helpers (3.3.2.0)
+      twitter-bootswatch-rails (~> 3.3, >= 3.3.2)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.1)
@@ -226,7 +245,10 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   spring
   squasher
+  therubyracer
   turbolinks
+  twitter-bootswatch-rails (~> 3.3.4)
+  twitter-bootswatch-rails-helpers
   uglifier (>= 1.3.0)
   unicorn
   whenever

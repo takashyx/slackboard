@@ -56,12 +56,19 @@ gem 'io-console', '=0.4.3'
 # gem 'debugger', group: [:development, :test]
 
 group :deployment do
-    gem 'capistrano', '~> 3.2.1'
-    gem 'capistrano-rails'
-    gem 'capistrano-bundler'
-    gem 'capistrano-rvm'
-    gem 'capistrano3-unicorn'
+  gem 'capistrano', '~> 3.2.1'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rvm'
+  gem 'capistrano3-unicorn'
 end
 
 gem 'squasher'
 
+gem 'therubyracer'
+
+# twitter bootstrap css & javascript toolkit
+gem 'twitter-bootswatch-rails', '~> 3.3.4'
+
+# twitter bootstrap helpers gem, e.g., alerts etc...
+gem 'twitter-bootswatch-rails-helpers'
