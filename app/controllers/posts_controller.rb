@@ -71,7 +71,7 @@ class PostsController < ApplicationController
   def perchannel_chart_data
     perchannel_data= Array.new
     Channel.all.each{|c|
-      perchannel_data.push({name:c.name, data: Post.where(channel_id: c.ch_id, :ts_date => 2.week.ago...Time.now).group_by_day(:ts_date).order('ts_date ASC').count })
+      perchannel_data.push({name:c.name, data: Post.where(ch_id: c.ch_id, :ts_date => 2.week.ago...Time.now).group_by_day(:ts_date).order('ts_date ASC').count })
     }
     render json: perchannel_data
   end
@@ -119,7 +119,7 @@ class PostsController < ApplicationController
       per_data = Hash.new
       weekdays_count = [0, 0, 0, 0, 0, 0, 0]
 
-      posts = Post.where(channel_id: ch.ch_id, :ts_date => 1.month.ago...Time.now).group_by_day(:ts_date).order('ts_date ASC').count
+      posts = Post.where(ch_id: ch.ch_id, :ts_date => 1.month.ago...Time.now).group_by_day(:ts_date).order('ts_date ASC').count
       posts.each{|p|
         weekdays_count[Time.at(p[0]).wday] += p[1]
       }
@@ -213,7 +213,7 @@ class PostsController < ApplicationController
       per_data = Hash.new
       hours_count = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
-      posts = Post.where(channel_id: ch.ch_id, :ts_date => 1.month.ago...Time.now)
+      posts = Post.where(ch_id: ch.ch_id, :ts_date => 1.month.ago...Time.now)
       posts.each{|p|
         hours_count[Time.at(p['ts_date']).hour] += 1
       }

@@ -8,6 +8,7 @@
       <th>User</th>
       <th>Text</th>
       <th>Ts date</th>
+      <th>Ch id</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,6 +22,7 @@
         <td><%= star.user %></td>
         <td><%= star.text %></td>
         <td><%= star.ts_date %></td>
+        <td><%= star.ch_id %></td>
         <td><%= link_to 'Show', star%></td>
         <td><%= link_to 'Edit', edit_star_path(star) %></td>
         <td><%= link_to 'Destroy', star, method: :delete, data: { confirm: 'Are you sure?' } %></td>

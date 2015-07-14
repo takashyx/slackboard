@@ -71,7 +71,7 @@ namespace :slack do
       puts 'No channels listed. please perform "rake handle_channel_info:update_list_of_channels" first.'
     else
       Channel.all.each {|ch|
-        final_post = Post.where(:channel_id => ch.ch_id).order('ts DESC').limit(1)
+        final_post = Post.where(:ch_id => ch.ch_id).order('ts DESC').limit(1)
         if final_post.nil? or final_post.empty?
           uri=get_json("https://slack.com/api/channels.history?token=#{Rails.application.secrets.slack_token}&channel=#{ch['ch_id']}")
         else
@@ -90,7 +90,7 @@ namespace :slack do
 
               Post.create(
                  post_type: m['type'],
-                 channel_id: ch['ch_id'],
+                 ch_id: ch['ch_id'],
                  user: m['user'],
                  text: m['text'],
                  ts:   m['ts'],

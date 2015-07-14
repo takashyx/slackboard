@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714223152) do
+ActiveRecord::Schema.define(version: 20150714223154) do
 
   create_table "channels", force: true do |t|
     t.string   "ch_id"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20150714223152) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "ts_date"
-    t.string   "channel_id"
+    t.string   "ch_id"
   end
 
   create_table "stars", force: true do |t|
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20150714223152) do
     t.datetime "updated_at"
     t.string   "starred_by"
     t.datetime "ts_date"
+    t.string   "ch_id"
   end
 
   create_table "users", force: true do |t|
