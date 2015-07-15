@@ -14,7 +14,7 @@
   </thead>
 
   <tbody>
-    <%= line_chart @chart_data, height: "800px" %>
+    <%= render partial: '/chart', locals: { chart_input_data: @star_chart_data } %>
     <% @stars.each do |star| %>
       <tr>
         <td><%= star.post_type %></td>

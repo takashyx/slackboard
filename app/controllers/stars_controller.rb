@@ -7,11 +7,11 @@ class StarsController < ApplicationController
     @stars = Star.all
 
     data = Array.new
-    data.push({ name:"all data", data: Star.group_by_day(:ts_date).order('ts_date ASC').count })
+    data.push({ name:'all data', data: Star.group_by_day(:ts_date).order('ts_date ASC').count })
     User.all.each{|u|
-      data.push({name:u.name+"("+u.profile_real_name+")", data: Star.where(user: u.user_id).group_by_day(:ts_date).order('ts_date ASC').count })
+      data.push({name:"#{u.name}(#{u.profile_real_name})", data: Star.where(user: u.user_id).group_by_day(:ts_date).order('ts_date ASC').count })
     }
-    @chart_data = data
+    @star_chart_data = data
   end
 
   # GET /stars/1
