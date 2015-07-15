@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   root "home#index"
 
+  get "chartkick_graph_options" => "posts#chartkick_graph_options"
   get "chart_data" => "posts#chart_data"
   get "perweekday_chart_data" => "posts#perweekday_chart_data"
   get "peruser_chart_data" => "posts#peruser_chart_data"

@@ -1,24 +1,24 @@
 <h1>All Posts</h1>
 <h2>All Posts Per Day (2 weeks)</h2>
-<%= line_chart :chart_data, height: "600px" %>
+<%= render partial: '/chart', locals: {discrete: false, chart_input_data: :chart_data } %>
 <h2>All Posts Per Hour (1 month)</h2>
-<%= line_chart :perhour_chart_data, discrete: true, height: "600px" %>
+<%= render partial: '/chart', locals: {discrete: true, chart_input_data: :perhour_chart_data } %>
 <h2>All Posts Per Weekday (1 month)</h2>
-<%= line_chart :perweekday_chart_data, discrete: true, height: "600px" %>
+<%= render partial: '/chart', locals: {discrete: true, chart_input_data: :perweekday_chart_data } %>
 
 <h2>Per Channel</h2>
 <h2>Per Channel & Day (2 weeks)</h2>
-<%= line_chart :perchannel_chart_data, height: "600px" %>
+<%= render partial: '/chart', locals: {discrete: false, chart_input_data: :perchannel_chart_data } %>
 <h2>Per Channel & Hour (1 month)</h2>
-<%= line_chart :perhour_channel_chart_data, discrete: true, height: "600px" %>
+<%= render partial: '/chart', locals: {discrete: true, chart_input_data: :perhour_channel_chart_data } %>
 <h2>Per Channel & Weekday (1 month)</h2>
-<%= line_chart :perchannel_weekday_chart_data, discrete: true, height: "600px" %>
+<%= render partial: '/chart', locals: {discrete: true, chart_input_data: :perchannel_weekday_chart_data } %>
 
 <h2>Per User (2 weeks)</h2>
-<%= line_chart :peruser_chart_data, height: "600px" %>
+<%= render partial: '/chart', locals: {discrete: false, chart_input_data: :peruser_chart_data } %>
 <h2>Per User & Hour (1 month)</h2>
-<%= line_chart :perhour_user_chart_data, discrete: true, height: "600px" %>
+<%= render partial: '/chart', locals: {discrete: true, chart_input_data: :perhour_user_chart_data } %>
 <h2>Per User & Weekday (1 month)</h2>
-<%= line_chart :peruser_weekday_chart_data, discrete: true, height: "600px" %>
+<%= render partial: '/chart', locals: {discrete: true, chart_input_data: :peruser_weekday_chart_data } %>
 
 <h1><%= link_to "Admin", rails_admin_path %></h1>

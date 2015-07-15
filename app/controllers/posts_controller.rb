@@ -6,7 +6,6 @@ class PostsController < ApplicationController
   def index
     @posts = Post.where(:ts_date => 2.week.ago...Time.now)
   end
-
   # GET /posts/1
   # GET /posts/1.json
   def show
@@ -60,6 +59,7 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
 
   def chart_data

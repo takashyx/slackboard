@@ -1,0 +1,5 @@
+<% if discrete.blank? %>
+    <%= line_chart chart_input_data, height: '600px' ,library: { backgroundColor: '#272B30', crosshair: { trigger: 'both' }, annotations: { textStyle: { color: '#000', auraColor: '#000', opacity: 0.8 } } } %>
+<% else %>
+    <%= line_chart chart_input_data, discrete: true, height: '600px' ,library: { backgroundColor: '#272B30', crosshair: { trigger: 'both' }, annotations: { textStyle: { color: '#000', auraColor: '#000', opacity: 0.8 } } } %>
+<% end %>
