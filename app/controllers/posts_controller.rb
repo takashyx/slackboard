@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.where(:ts_date => 2.week.ago...Time.now)
+    @posts = Post.where(:ts_date => 1.week.ago...Time.now)
   end
   # GET /posts/1
   # GET /posts/1.json

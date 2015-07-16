@@ -1,6 +1,13 @@
-<h1>Listing channels</h1>
+<h1>Channels</h1>
+<h2>Daily (2 weeks)</h2>
+<%= render partial: '/chart', locals: { chart_input_data: :perchannel_chart_data } %>
+<h2>Hourly (1 month)</h2>
+<%= render partial: '/chart', locals: {discrete: true, chart_input_data: :perhour_channel_chart_data } %>
+<h2>Weekday (1 month)</h2>
+<%= render partial: '/chart', locals: {discrete: true, chart_input_data: :perchannel_weekday_chart_data } %>
 
-<table>
+<h2>List of Channels (All)</h2>
+<table class="table table-striped table-hover">
   <thead>
     <tr>
       <th>Ch</th>
@@ -34,9 +41,9 @@
         <td><%= channel.purpose_value %></td>
         <td><%= channel.purpose_creator %></td>
         <td><%= channel.purpose_last_set %></td>
-        <td><%= link_to 'Show', channel %></td>
-        <td><%= link_to 'Edit', edit_channel_path(channel) %></td>
-        <td><%= link_to 'Destroy', channel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to 'Show', channel, method: :get, class: 'btn btn-default' %></td>
+        <td><%= button_to 'Edit', edit_channel_path(channel), method: :get, class: 'btn btn-default' %></td>
+        <td><%= button_to 'Destroy', channel, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default' %></td>
       </tr>
     <% end %>
   </tbody>

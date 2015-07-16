@@ -1,6 +1,13 @@
-<h1>Listing posts</h1>
+<h1>Posts</h1>
+<h2>Daily (2 weeks)</h2>
+<%= render partial: '/chart', locals: { chart_input_data: :chart_data } %>
+<h2>Hourly (1 month)</h2>
+<%= render partial: '/chart', locals: {discrete: true, chart_input_data: :perhour_chart_data } %>
+<h2>Weekly (1 month)</h2>
+<%= render partial: '/chart', locals: {discrete: true, chart_input_data: :perweekday_chart_data } %>
 
-<table>
+<h2>List of Posts (1 weeks)</h2>
+<table class="table table-striped table-hover">
   <thead>
     <tr>
       <th>Post type</th>
@@ -18,9 +25,9 @@
         <td><%= post.user %></td>
         <td><%= post.text %></td>
         <td><%= post.ts %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to 'Show', post, method: :get, class: 'btn btn-default' %></td>
+        <td><%= button_to 'Edit', edit_post_path(post), method: :get, class: 'btn btn-default' %></td>
+        <td><%= button_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default' %></td>
       </tr>
     <% end %>
   </tbody>
