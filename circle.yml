@@ -12,10 +12,10 @@ deployment:
   staging:
     branch: master
     commands:
-      - sh script/deploy_staging.sh
+      - bundle exec cap staging deploy
 
   production:
     branch: master
     commands:
-      - sh script/deploy_production.sh
+      - bundle exec cap staging deploy
 
