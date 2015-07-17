@@ -5,9 +5,10 @@
 # property set.  Don't declare `role :all`, it's a meta role.
 set :branch, 'master'
 
-role :app, %w{ec2-user@slackboard}
-role :web, %w{ec2-user@slackboard}
-role :db, %w{ec2-user@slackboard}
+
+role :app, "#{ENV['DEPLOY_USER']}@#{ENV['DEPLOY_SERVER']}"
+role :web, "#{ENV['DEPLOY_USER']}@#{ENV['DEPLOY_SERVER']}"
+role :db, "#{ENV['DEPLOY_USER']}@#{ENV['DEPLOY_SERVER']}"
 
 
 # Extended Server Syntax
@@ -16,7 +17,7 @@ role :db, %w{ec2-user@slackboard}
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
 
-server 'slackboard', user: 'ec2-user', roles: %w{web app db}
+server ENV['DEPLOY_SERVER'], user: ENV['DEPLOY_USER'], roles: %w{web app db}
 
 
 # Custom SSH Options
