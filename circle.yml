@@ -1,0 +1,21 @@
+machine:
+  timezone:
+    Asia/Tokyo
+  ruby:
+    version: 2.2.1
+
+dependencies:
+  pre:
+    - sudo pip install awscli
+
+deployment:
+  staging:
+    branch: master
+    commands:
+      - sh script/deploy_staging.sh
+
+  production:
+    branch: master
+    commands:
+      - sh script/deploy_production.sh
+

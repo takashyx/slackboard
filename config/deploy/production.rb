@@ -5,9 +5,9 @@
 # property set.  Don't declare `role :all`, it's a meta role.
 set :branch, 'master'
 
-role :app, %w{slackboard}
-role :web, %w{slackboard}
-role :db, %w{slackboard}
+role :app, %w{ec2-user@slackboard}
+role :web, %w{ec2-user@slackboard}
+role :db, %w{ec2-user@slackboard}
 
 
 # Extended Server Syntax
