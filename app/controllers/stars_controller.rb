@@ -21,7 +21,7 @@ class StarsController < ApplicationController
 
   # GET /stars/new
   def new
-    @stars = Star.new
+    @star = Star.new
   end
 
   # GET /stars/1/edit
@@ -75,7 +75,7 @@ class StarsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def stars_params
-      params.require(:stars).permit(:post_type, :ts, :user, :text, :ts_date, :ch_id)
+    def star_params
+      params.require(:star).permit(:post_type, :ts, :user, :text, :ts_date, :ch_id)
     end
 end
