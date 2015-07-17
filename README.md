@@ -1,5 +1,10 @@
 # Slackboard
 
+[![Circle CI](https://circleci.com/gh/takashyx/slackboard/tree/master.svg?style=svg)](https://circleci.com/gh/takashyx/slackboard/tree/master)
+[![Code Climate](https://codeclimate.com/github/takashyx/slackboard/badges/gpa.svg)](https://codeclimate.com/github/takashyx/slackboard)
+[![Test Coverage](https://codeclimate.com/github/takashyx/slackboard/badges/coverage.svg)](https://codeclimate.com/github/takashyx/slackboard/coverage)
+[![Dependency Status](https://gemnasium.com/takashyx/slackboard.svg)](https://gemnasium.com/takashyx/slackboard)
+
 A dashboard rails app to visualise activities in Slack
 
 ## Screenshot
