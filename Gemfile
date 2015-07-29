@@ -75,3 +75,5 @@ gem 'twitter-bootswatch-rails-helpers'
 
 #codeclimate
 gem "codeclimate-test-reporter", group: :test, require: nil
+
+gem 'newrelic_rpm'
