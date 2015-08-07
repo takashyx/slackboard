@@ -1,5 +1,5 @@
 <% if local_assigns[:discrete] and discrete %>
-    <%= line_chart chart_input_data, discrete: true, height: '500px' ,library: { backgroundColor: '#272B30', annotations: { textStyle: { color: '#000', auraColor: '#000', opacity: 1.0 } } } %>
+    <%= line_chart chart_input_data, discrete: true, height: '500px' ,library: { backgroundColor: '#272B30', chartArea: {left: '6%', right: '12%', top: '5%', bottom: '5%', width:'82%', height: '90%'} } %>
 <% else %>
-    <%= line_chart chart_input_data, height: '500px' ,library: { backgroundColor: '#272B30', annotations: { textStyle: { color: '#000', auraColor: '#000', opacity: 1.0 } } } %>
+    <%= line_chart chart_input_data, height: '500px' ,library: { backgroundColor: '#272B30', chartArea: {left: '6%', right: '12%', top: '5%', bottom: '5%', width:'82%', height: '90%'} } %>
 <% end %>
