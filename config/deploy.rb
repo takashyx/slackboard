@@ -57,7 +57,7 @@ namespace :deploy do
 
 
       # https://github.com/tablexi/capistrano3-unicorn
-      invoke 'unicorn:restart'
+      invoke 'unicorn:legacy_restart'
 
     end
   end
