@@ -14,7 +14,7 @@ namespace :slack do
 
   desc 'update channel list'
   task :update_channels => :environment do
-    uri = get_json('https://slack.com/api/channels.list?token=' + Rails.application.secrets.slack_token)
+    uri = get_json("https://slack.com/api/channels.list?token=#{Rails.application.secrets.slack_token}")
     if uri['ok']
 
       uri['channels'].each {|ch|
