@@ -16,6 +16,10 @@ A dashboard rails app to visualise activities in Slack
 - unicorn
 - capistrano3
 - chartkick.js
+- mysql timezone support
+
+  `mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql`
+
 
 etc
 
