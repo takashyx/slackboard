@@ -92,7 +92,7 @@ class PostsController < ApplicationController
     weekdays_table = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
     per_data = Hash.new
-    weekdays_count = [0, 0, 0, 0, 0, 0, 0]
+    weekdays_count = Array.new(7, 0)
 
     posts = Post.where(:ts_date => 1.month.ago...Time.now).group_by_day(:ts_date).order('ts_date ASC').count
     posts.each{|p|
@@ -117,7 +117,7 @@ class PostsController < ApplicationController
     Channel.all.each{|ch|
 
       per_data = Hash.new
-      weekdays_count = [0, 0, 0, 0, 0, 0, 0]
+      weekdays_count = Array.new(7, 0)
 
       posts = Post.where(ch_id: ch.ch_id, :ts_date => 1.month.ago...Time.now).group_by_day(:ts_date).order('ts_date ASC').count
       posts.each{|p|
@@ -142,7 +142,7 @@ class PostsController < ApplicationController
     User.all.each{|u|
 
       per_data = Hash.new
-      weekdays_count = [0, 0, 0, 0, 0, 0, 0]
+      weekdays_count = Array.new(7, 0)
 
       posts = Post.where(user: u.user_id, :ts_date => 1.month.ago...Time.now).group_by_day(:ts_date).order('ts_date ASC').count
       posts.each{|p|
@@ -163,7 +163,7 @@ class PostsController < ApplicationController
 
     hours = Array(5..23).concat(Array(0..4))
     per_data = Hash.new
-    hours_count = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    hours_count = Array.new(24, 0)
 
     posts = Post.where(:ts_date => 1.month.ago...Time.now)
     posts.each{|p|
@@ -188,7 +188,7 @@ class PostsController < ApplicationController
 
       hours = Array(5..23).concat(Array(0..4))
       per_data = Hash.new
-      hours_count = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+      hours_count = Array.new(24, 0)
 
       posts = Post.where(user: u.user_id, :ts_date => 1.month.ago...Time.now)
       posts.each{|p|
@@ -211,7 +211,8 @@ class PostsController < ApplicationController
 
       hours = Array(5..23).concat(Array(0..4))
       per_data = Hash.new
-      hours_count = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+      hours_count = Array.new(24, 0)
+
 
       posts = Post.where(ch_id: ch.ch_id, :ts_date => 1.month.ago...Time.now)
       posts.each{|p|
