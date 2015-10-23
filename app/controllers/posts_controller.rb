@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
+  helper_method :sort_column, :sort_direction
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.where(:ts_date => 1.week.ago...Time.now)
+    @posts = Post.where(:ts_date => 1.week.ago...Time.now).order(sort_column + ' ' + sort_direction)
   end
   # GET /posts/1
   # GET /posts/1.json
@@ -237,4 +238,13 @@ class PostsController < ApplicationController
       params.require(:post).permit(:post_type, :user, :text, :ts)
     end
 
+    # sort parameter check
+    def sort_direction
+       %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+    end
+
+    #sort index
+    def sort_column
+      Post.column_names.include?(params[:sort]) ? params[:sort] : "ts"
+    end
 end

@@ -7,27 +7,27 @@
 <%= render partial: '/chart', locals: {discrete: true, chart_input_data: :peruser_weekday_chart_data } %>
 
 <h2>List of Users (All)</h2>
-<table class="table table-striped table-hover">
+<table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
-      <th>User</th>
-      <th>Name</th>
-      <th>Deleted</th>
-      <th>Color</th>
-      <th>Profile first name</th>
-      <th>Profile last name</th>
-      <th>Profile real name</th>
-      <th>Profile email</th>
-      <th>Profile skype</th>
-      <th>Profile phone</th>
-      <th>Profile image 24</th>
-      <th>Profile image 32</th>
-      <th>Profile image 48</th>
-      <th>Profile image 72</th>
-      <th>Profile image 192</th>
-      <th>Is admin</th>
-      <th>Is owner</th>
-      <th>Has files</th>
+      <th><%= sortable "user", "User" %></th>
+      <th><%= sortable "name", "Name" %></th>
+      <th><%= sortable "deleted", "Deleted" %></th>
+      <th><%= sortable "color", "Color" %></th>
+      <th><%= sortable "profile_first_name", "Profile first name" %></th>
+      <th><%= sortable "profile_last_name", "Profile last name" %></th>
+      <th><%= sortable "profile_real_name", "Profile real name" %></th>
+      <th><%= sortable "profile_email", "Profile email" %></th>
+      <th><%= sortable "profile_skype", "Profile skype" %></th>
+      <th><%= sortable "profile_phone", "Profile phone" %></th>
+      <th><%= sortable "profile_image_24", "Profile image 24" %></th>
+      <th><%= sortable "profile_image_32", "Profile image 32" %></th>
+      <th><%= sortable "profile_image_48", "Profile image 48" %></th>
+      <th><%= sortable "profile_image_72", "Profile image 72" %></th>
+      <th><%= sortable "profile_image_192", "Profile image 192" %></th>
+      <th><%= sortable "is_admin", "Is admin" %></th>
+      <th><%= sortable "is_admin", "Is owner" %></th>
+      <th><%= sortable "has_files", "Has files" %></th>
       <th colspan="3"></th>
     </tr>
   </thead>

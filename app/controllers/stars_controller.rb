@@ -1,10 +1,11 @@
 class StarsController < ApplicationController
+  helper_method :sort_column, :sort_direction
   before_action :set_star, only: [:show, :edit, :update, :destroy]
 
   # GET /stars
   # GET /stars.json
   def index
-    @stars = Star.all
+    @stars = Star.all.order(sort_column + ' ' + sort_direction)
 
     data = Array.new
     data.push({ name:'all data', data: Star.group_by_day(:ts_date).order('ts_date ASC').count })
@@ -77,5 +78,15 @@ class StarsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def star_params
       params.require(:star).permit(:post_type, :ts, :user, :text, :ts_date, :ch_id)
+    end
+
+    # sort parameter check
+    def sort_direction
+       %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+    end
+
+    #sort index
+    def sort_column
+      Star.column_names.include?(params[:sort]) ? params[:sort] : "ts"
     end
 end

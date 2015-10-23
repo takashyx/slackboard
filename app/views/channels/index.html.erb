@@ -7,21 +7,21 @@
 <%= render partial: '/chart', locals: {discrete: true, chart_input_data: :perchannel_weekday_chart_data } %>
 
 <h2>List of Channels (All)</h2>
-<table class="table table-striped table-hover">
+<table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
-      <th>Ch</th>
-      <th>Name</th>
-      <th>Created</th>
-      <th>Creator</th>
-      <th>Is archived</th>
-      <th>Num members</th>
-      <th>Topic value</th>
-      <th>Topic creator</th>
-      <th>Topic last set</th>
-      <th>Purpose value</th>
-      <th>Purpose creator</th>
-      <th>Purpose last set</th>
+      <th><%= sortable "ch_id", "Ch" %></th>
+      <th><%= sortable "name", "Name" %></th>
+      <th><%= sortable "created", "Created" %></th>
+      <th><%= sortable "creator", "Creator" %></th>
+      <th><%= sortable "is_archived", "Is archived" %></th>
+      <th><%= sortable "num_members", "Num members" %></th>
+      <th><%= sortable "topic_value", "Topic value" %></th>
+      <th><%= sortable "topic_creator", "Topic creator" %></th>
+      <th><%= sortable "topic_last_set", "Topic last set" %></th>
+      <th><%= sortable "purpose_value", "Purpose value" %></th>
+      <th><%= sortable "purpose_creator", "Purpose creator" %></th>
+      <th><%= sortable "purpose_last_set", "Purpose last set" %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
