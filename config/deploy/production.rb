@@ -3,7 +3,7 @@
 # Supports bulk-adding hosts to roles, the primary server in each group
 # is considered to be the first unless any hosts have the primary
 # property set.  Don't declare `role :all`, it's a meta role.
-set :branch, 'deploy_to_ec2_user'
+set :branch, 'master'
 
 
 role :app, "#{ENV['DEPLOY_USER']}@#{ENV['DEPLOY_SERVER']}"
