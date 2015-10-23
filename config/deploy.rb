@@ -3,7 +3,7 @@ lock '3.2.1'
 
 set :application, 'slackboard'
 set :repo_url, 'git@github.com:takashyx/slackboard.git'
-set :deploy_to, '/var/www/slackboard'
+set :deploy_to, '/home/ec2-user/slackboard'
 set :keep_releases, 5
 
 set :rvm_type, :user

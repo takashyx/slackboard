@@ -4,8 +4,8 @@ timeout 15
 preload_app true  # 更新時ダウンタイム無し
 
 # listen 8090, :tcp_nopush => true
-listen "/var/www/slackboard/shared/tmp/sockets/unicorn.sock"
-pid  "/var/www/slackboard/shared/tmp/pids/unicorn.pid"
+listen "/home/ec2-user/slackboard/shared/tmp/sockets/unicorn.sock"
+pid  "/home/ec2-user/slackboard/shared/tmp/pids/unicorn.pid"
 
 before_fork do |server, worker|
   Signal.trap 'TERM' do
