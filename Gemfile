@@ -14,6 +14,9 @@ gem 'better_errors'
 
 gem 'binding_of_caller'
 
+# specify ver due to security issues
+gem 'nokogiri', '~>1.6.6.4'
+
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 gem 'mysql2', '~> 0.3.20'
