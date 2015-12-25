@@ -5,7 +5,7 @@ require 'json'
 namespace :slack do
 
   desc 'For the 1st time crawl'
-  task :first_time_crawl=> :environment do
+  task :first_time_crawl => :environment do
     Rake::Task['slack:update_channels'].invoke(:environnmet)
     Rake::Task['slack:update_users'].invoke(:environnmet)
     Rake::Task['slack:update_posts'].invoke(:environnmet)
@@ -84,49 +84,63 @@ namespace :slack do
     if Channel.count == 0
       puts 'No channels listed. please perform "rake handle_channel_info:update_list_of_channels" first.'
     else
+      uri = ""
+
       Channel.all.each {|ch|
-        final_post = Post.where(:ch_id => ch.ch_id).order('ts DESC').limit(1)
-        if final_post.nil? or final_post.empty?
-          uri=get_json("https://slack.com/api/channels.history?token=#{Rails.application.secrets.slack_token}&channel=#{ch['ch_id']}")
-        else
-          final_ts_per_channel = final_post[0]['ts']
-          uri=get_json("https://slack.com/api/channels.history?token=#{Rails.application.secrets.slack_token}&channel=#{ch['ch_id']}&oldest=#{final_ts_per_channel.to_s}")
-        end
-        if uri['ok']
-
-          for m in uri['messages']
-
-            if m['type'] == 'message' and Post.find_by( ts: m['ts'] ) == nil
-
-              puts ''
-              puts '!!! NEW POST !!!'
-              puts ''
-
-              Post.create(
-                 post_type: m['type'],
-                 ch_id: ch['ch_id'],
-                 user: m['user'],
-                 text: m['text'],
-                 ts:   m['ts'],
-                 ts_date: Time.at(m['ts'].to_i)
-              )
-
-              puts "channel: #{m['channel']}"
-              puts "type   : #{m['type']}"
-              puts "user   : #{m['user']}"
-              puts "text   : #{m['text']}"
-              puts "ts     : #{m['ts']}"
-              puts '=============='
-
-            end
+        begin  
+          final_post = Post.where(:ch_id => ch.ch_id).order('ts DESC').limit(1)
+          if final_post.nil? or final_post.empty?
+            uri=get_json("https://slack.com/api/channels.history?token=#{Rails.application.secrets.slack_token}&channel=#{ch['ch_id']}&oldest=1")
+          else
+            final_ts_per_channel = final_post[0]['ts']
+            uri=get_json("https://slack.com/api/channels.history?token=#{Rails.application.secrets.slack_token}&channel=#{ch['ch_id']}&oldest=#{final_ts_per_channel.to_s}")
           end
-        end
-      }
-      #TODO: if uri['has_more'] == true then
-      # do it again
+          if uri['ok']
 
-      # wait for API call for next channel
-      sleep(2)
+            ms_sorted = []
+
+            # sort
+            ms = uri['messages']
+
+            ms.each{|m|
+              if m['type'] == 'message'
+                ms_sorted.push(m)
+              end    
+            }       
+            ms_sorted.reverse!
+
+            ms_sorted.each{|m|
+
+              if Post.find_by( ts: m['ts'] ) == nil
+
+                puts ''
+                puts '!!! NEW POST !!!'
+                puts ''
+
+                Post.create(
+                   post_type: m['type'],
+                   ch_id: ch['ch_id'],
+                   user: m['user'],
+                   text: m['text'],
+                   ts:   m['ts'],
+                   ts_date: Time.at(m['ts'].to_i)
+                )
+
+                puts "channel: #{m['channel']}"
+                puts "type   : #{m['type']}"
+                puts "user   : #{m['user']}"
+                puts "text   : #{m['text']}"
+                puts "ts     : #{m['ts']}"
+                puts '=============='
+
+              end
+            }
+
+            sleep(2)
+          end
+        end  while uri['has_more'] == true
+        }
+        # wait for API call for next channel
     end
   end
 
