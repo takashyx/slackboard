@@ -2,7 +2,7 @@ machine:
   timezone:
     Asia/Tokyo
   ruby:
-    version: 2.2.1
+    version: 2.2.3
 
 dependencies:
   pre:
