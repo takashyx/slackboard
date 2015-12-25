@@ -15,7 +15,7 @@ gem 'better_errors'
 gem 'binding_of_caller'
 
 # specify ver due to security issues
-gem 'nokogiri', '~>1.6.6.4'
+gem 'nokogiri', '~>1.6.7.0'
 
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
@@ -23,7 +23,7 @@ gem 'mysql2', '~> 0.3.20'
 
 gem 'whenever', require: false
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~>4.1.0'
+gem 'rails', '~> 4.1.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -51,7 +51,7 @@ gem 'spring',        group: :development
 # Use unicorn as the app server
 gem 'unicorn'
 
-gem 'io-console', '=0.4.3'
+gem 'io-console', '>= 0.4.3'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

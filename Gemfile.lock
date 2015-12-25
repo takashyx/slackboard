@@ -28,7 +28,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
-    autoprefixer-rails (6.1.1)
+    autoprefixer-rails (6.2.1)
       execjs
       json
     bcrypt (3.1.10)
@@ -69,10 +69,9 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
-    colorize (0.7.7)
     commonjs (0.2.7)
     debug_inspector (0.0.2)
-    devise (3.5.2)
+    devise (3.5.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -90,7 +89,7 @@ GEM
       tilt
     hike (1.2.3)
     i18n (0.7.0)
-    io-console (0.4.3)
+    io-console (0.4.5)
     jbuilder (2.3.2)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -115,7 +114,7 @@ GEM
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (2.99)
-    mini_portile (0.6.2)
+    mini_portile2 (2.0.0)
     minitest (5.8.3)
     multi_json (1.11.2)
     mysql2 (0.3.20)
@@ -123,9 +122,9 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.0.1)
-    newrelic_rpm (3.14.0.305)
-    nokogiri (1.6.6.4)
-      mini_portile (~> 0.6.0)
+    newrelic_rpm (3.14.1.311)
+    nokogiri (1.6.7.1)
+      mini_portile2 (~> 2.0.0.rc2)
     orm_adapter (0.5.0)
     rack (1.5.5)
     rack-pjax (0.8.0)
@@ -164,7 +163,8 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.15.0)
     rake (10.4.2)
-    rdoc (4.2.0)
+    rdoc (4.2.1)
+      json (~> 1.4)
     ref (2.0.0)
     remotipart (1.2.1)
     responders (1.1.2)
@@ -179,12 +179,12 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    simplecov (0.10.0)
+    simplecov (0.11.1)
       docile (~> 1.1.0)
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
-    spring (1.4.4)
+    spring (1.6.1)
     sprockets (2.12.4)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -195,8 +195,7 @@ GEM
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
     squasher (0.1.5)
-    sshkit (1.7.1)
-      colorize (>= 0.7.0)
+    sshkit (1.8.1)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     therubyracer (0.12.2)
@@ -222,7 +221,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    warden (1.2.3)
+    warden (1.2.4)
       rack (>= 1.0)
     whenever (0.9.4)
       chronic (>= 0.6.3)
@@ -244,12 +243,12 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
   groupdate
-  io-console (= 0.4.3)
+  io-console (>= 0.4.3)
   jbuilder (~> 2.0)
   jquery-rails
   mysql2 (~> 0.3.20)
   newrelic_rpm
-  nokogiri (~> 1.6.6.4)
+  nokogiri (~> 1.6.7.0)
   rails (~> 4.1.0)
   rails_admin
   sass-rails (~> 4.0.3)
@@ -265,4 +264,4 @@ DEPENDENCIES
   whenever
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
