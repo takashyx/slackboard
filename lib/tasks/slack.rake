@@ -87,7 +87,7 @@ namespace :slack do
       uri = ""
 
       Channel.all.each {|ch|
-        begin  
+        begin
           final_post = Post.where(:ch_id => ch.ch_id).order('ts DESC').limit(1)
           if final_post.nil? or final_post.empty?
             uri=get_json("https://slack.com/api/channels.history?token=#{Rails.application.secrets.slack_token}&channel=#{ch['ch_id']}&oldest=1")
@@ -105,8 +105,8 @@ namespace :slack do
             ms.each{|m|
               if m['type'] == 'message'
                 ms_sorted.push(m)
-              end    
-            }       
+              end
+            }
             ms_sorted.reverse!
 
             ms_sorted.each{|m|
@@ -185,7 +185,7 @@ namespace :slack do
       # do it again
 
       # wait for API call for next channel
-      sleep(3)
+      sleep(5)
     end
   end
 
