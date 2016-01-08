@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Word:</strong>
+  <%= @word.word %>
+</p>
+
+<p>
+  <strong>Count:</strong>
+  <%= @word.count %>
+</p>
+
+<p>
+  <strong>Ignore flag:</strong>
+  <%= @word.ignore_flag %>
+</p>
+
+<p>
+  <strong>Last post:</strong>
+  <%= @word.last_post_id %>
+</p>
+
+<%= link_to 'Edit', edit_word_path(@word) %> |
+<%= link_to 'Back', words_path %>

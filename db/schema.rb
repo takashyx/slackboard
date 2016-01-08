@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714223154) do
+ActiveRecord::Schema.define(version: 20160108221227) do
 
   create_table "channels", force: true do |t|
     t.string   "ch_id"
@@ -29,6 +29,24 @@ ActiveRecord::Schema.define(version: 20150714223154) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "loginusers", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "loginusers", ["email"], name: "index_loginusers_on_email", unique: true, using: :btree
+  add_index "loginusers", ["reset_password_token"], name: "index_loginusers_on_reset_password_token", unique: true, using: :btree
 
   create_table "posts", force: true do |t|
     t.string   "post_type"
@@ -72,6 +90,30 @@ ActiveRecord::Schema.define(version: 20150714223154) do
     t.boolean  "is_admin"
     t.boolean  "is_owner"
     t.boolean  "has_files"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "word_counts", force: true do |t|
+    t.string   "word"
+    t.integer  "count"
+    t.boolean  "ignore_flag"
+    t.integer  "last_post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "word_ignores", force: true do |t|
+    t.string   "word"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "words", force: true do |t|
+    t.string   "word"
+    t.integer  "count"
+    t.boolean  "ignore_flag"
+    t.integer  "last_post_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

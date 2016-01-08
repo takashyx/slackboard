@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  word: MyString
+  count: 1
+  ignore_flag: false
+  last_post_id: 1
+
+two:
+  word: MyString
+  count: 1
+  ignore_flag: false
+  last_post_id: 1

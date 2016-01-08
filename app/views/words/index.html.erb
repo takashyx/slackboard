@@ -1,0 +1,31 @@
+<h1>Listing words</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Word</th>
+      <th>Count</th>
+      <th>Ignore flag</th>
+      <th>Last post</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @words_top_hundred.each do |word| %>
+      <tr>
+        <td><%= word.word %></td>
+        <td><%= word.count %></td>
+        <td><%= word.ignore_flag %></td>
+        <td><%= word.last_post_id %></td>
+        <td><%= link_to 'Show', word %></td>
+        <td><%= link_to 'Edit', edit_word_path(word) %></td>
+        <td><%= link_to 'Destroy', word, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Word', new_word_path %>
