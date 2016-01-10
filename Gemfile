@@ -14,6 +14,8 @@ gem 'better_errors'
 
 gem 'binding_of_caller'
 
+gem 'mecab'
+
 # specify ver due to security issues
 gem 'nokogiri', '~>1.6.7.0'
 

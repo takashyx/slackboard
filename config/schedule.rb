@@ -30,4 +30,5 @@ end
 
 every '*/30 * * * *' do
   rake "slack:update_posts"
+  rake "word:process_new_messages"
 end

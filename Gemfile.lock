@@ -113,6 +113,7 @@ GEM
     libv8 (3.16.14.13)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mecab (0.996)
     mime-types (2.99)
     mini_portile2 (2.0.0)
     minitest (5.8.3)
@@ -246,6 +247,7 @@ DEPENDENCIES
   io-console (= 0.4.3)
   jbuilder (~> 2.0)
   jquery-rails
+  mecab
   mysql2 (~> 0.3.20)
   newrelic_rpm
   nokogiri (~> 1.6.7.0)
