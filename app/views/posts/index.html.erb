@@ -14,7 +14,6 @@
       <th><%= sortable "user","User" %></th>
       <th><%= sortable "text", "Text" %></th>
       <th><%= sortable "ts", "Ts" %></th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -25,9 +24,6 @@
         <td><%= post.user %></td>
         <td><%= post.text %></td>
         <td><%= post.ts %></td>
-        <td><%= button_to 'Show', post, method: :get, class: 'btn btn-default' %></td>
-        <td><%= button_to 'Edit', edit_post_path(post), method: :get, class: 'btn btn-default' %></td>
-        <td><%= button_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default' %></td>
       </tr>
     <% end %>
   </tbody>

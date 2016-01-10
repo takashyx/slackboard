@@ -22,7 +22,6 @@
       <th><%= sortable "purpose_value", "Purpose value" %></th>
       <th><%= sortable "purpose_creator", "Purpose creator" %></th>
       <th><%= sortable "purpose_last_set", "Purpose last set" %></th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -41,9 +40,6 @@
         <td><%= channel.purpose_value %></td>
         <td><%= channel.purpose_creator %></td>
         <td><%= channel.purpose_last_set %></td>
-        <td><%= button_to 'Show', channel, method: :get, class: 'btn btn-default' %></td>
-        <td><%= button_to 'Edit', edit_channel_path(channel), method: :get, class: 'btn btn-default' %></td>
-        <td><%= button_to 'Destroy', channel, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default' %></td>
       </tr>
     <% end %>
   </tbody>

@@ -28,7 +28,6 @@
       <th><%= sortable "is_admin", "Is admin" %></th>
       <th><%= sortable "is_admin", "Is owner" %></th>
       <th><%= sortable "has_files", "Has files" %></th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -53,9 +52,6 @@
         <td><%= user.is_admin %></td>
         <td><%= user.is_owner %></td>
         <td><%= user.has_files %></td>
-        <td><%= button_to 'Show', user, method: :get, class: 'btn btn-default' %></td>
-        <td><%= button_to 'Edit', edit_user_path(user), method: :get, class: 'btn btn-default' %></td>
-        <td><%= button_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default' %></td>
       </tr>
     <% end %>
   </tbody>
