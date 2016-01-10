@@ -28,7 +28,10 @@ every 1.day, :at => '4:30 am' do
   rake "slack:update_stars"
 end
 
-every '*/30 * * * *' do
+every '0 * * * *' do
   rake "slack:update_posts"
+end
+
+every '30 * * * *' do
   rake "word:process_new_messages"
 end

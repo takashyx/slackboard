@@ -11,7 +11,11 @@ Rails.application.routes.draw do
 
   resources :channels
 
-  resources :words
+  resources :words do
+    member do
+      put :toggle_ignore_flag
+    end
+  end
 
   root "home#index"
 

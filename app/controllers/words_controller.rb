@@ -1,12 +1,12 @@
 class WordsController < ApplicationController
   helper_method :sort_column, :sort_direction
-  before_action :set_word, only: [:show, :edit, :update, :destroy]
+  before_action :set_word, only: [:show, :edit, :update, :toggle_ignore_flag, :destroy]
 
   respond_to :html
 
   def index
     @words = Word.all
-    @words_top_hundred = Word.all.where(:ignore_flag  => [false, nil]).order(sort_column + ' ' + sort_direction).limit(10)
+    @words_top_hundred = Word.all.where(:ignore_flag  => [false, nil]).order(sort_column + ' ' + sort_direction).limit(100)
     @words_ignored = Word.all.where(:ignore_flag => true).order(sort_column + ' ' + sort_direction)
   end
 
@@ -21,13 +21,12 @@ class WordsController < ApplicationController
   end
 
   def toggle_ignore_flag
-    @word = Word.find(id)
     if @word.ignore_flag == true
-      @word.update_column(:ignore_flag, :false)
+      @word.update_column(:ignore_flag, 0)
     else
-      @word.update_column(:ignore_flag, :true)
+      @word.update_column(:ignore_flag, 1)
     end
-    redirect_to_index
+    redirect_to action: :index
   end
 
   def create
