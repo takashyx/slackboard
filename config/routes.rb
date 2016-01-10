@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  resources :words
   get 'home/index'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
   resources :stars
 
   resources :users
@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :posts
 
   resources :channels
+
+  resources :words
 
   root "home#index"
 

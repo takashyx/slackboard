@@ -1,26 +1,62 @@
-<h1>Listing words</h1>
+<h1>Words</h1>
 
-<table>
+<h2>Top Words</h2>
+<table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
-      <th>Word</th>
-      <th>Count</th>
-      <th>Ignore flag</th>
-      <th>Last post</th>
-      <th colspan="3"></th>
+      <th>Ranking</th>
+      <th>word</th>
+      <th>count</th>
+      <th>ignore_flag</th>
+      <th>last_post_id</th>
+      <th>Toggle ignore</th>
     </tr>
   </thead>
 
   <tbody>
+    <% ranking = 0 %>
+    <% prev_count = 0 %>
+    <% diff = 1 %>
     <% @words_top_hundred.each do |word| %>
+      <% if prev_count == word.count %>
+      <% diff = diff + 1 %>
+      <% else %>
+      <% ranking = ranking + diff %>
+      <% diff = 1 %>
+      <% end %>
+      <% prev_count = word.count %>
+      <tr>
+        <td><%= ranking %></td>
+        <td><%= word.word %></td>
+        <td><%= word.count %></td>
+        <td><%= word.ignore_flag %></td>
+        <td><%= word.last_post_id %></td>
+        <td><%= button_to 'Ignore', word, action: :toggle_ignore_flag, id: word.id, class: 'btn btn-default' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Ignored words</h2>
+<table class="table table-striped table-bordered table-hober">
+  <thead>
+    <tr>
+      <th>word</th>
+      <th>count</th>
+      <th>ignore_flag</th>
+      <th>last_post</th>
+      <th>Toggle ignore</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @words_ignored.each do |word| %>
       <tr>
         <td><%= word.word %></td>
         <td><%= word.count %></td>
         <td><%= word.ignore_flag %></td>
         <td><%= word.last_post_id %></td>
-        <td><%= link_to 'Show', word %></td>
-        <td><%= link_to 'Edit', edit_word_path(word) %></td>
-        <td><%= link_to 'Destroy', word, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to 'Ignore', word, action: :toggle_ignore_flag, id: word.id, class: 'btn btn-default' %></td>
       </tr>
     <% end %>
   </tbody>
