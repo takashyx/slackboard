@@ -7,9 +7,15 @@ machine:
 dependencies:
   pre:
     - sudo pip install awscli
-    - sh circle/install_mecab.sh
+    - sudo apt-get remove mecab
+    - sudo apt-get install python-dev
+  override:
+    - bash circle/install_mecab.sh
+    - bundle install: # note ':' here
+        timeout: 300 # fail if command has no output for 3 minutes
   cache_directories:
-    - vendor/mecab
+    - "~/tmp"
+    - "vendor/bundle"
 
 deployment:
   staging:
