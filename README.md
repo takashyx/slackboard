@@ -12,7 +12,7 @@ A dashboard rails app to visualise activities in Slack
 
 ## Dependencies
 
-- rvm
+- rbenv
 - unicorn
 - capistrano3
 - chartkick.js

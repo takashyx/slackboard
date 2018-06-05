@@ -13,80 +13,62 @@
 
 ActiveRecord::Schema.define(version: 20160108221227) do
 
-  create_table "channels", force: true do |t|
-    t.string   "ch_id"
-    t.string   "name"
-    t.integer  "created"
-    t.string   "creator"
+  create_table "channels", force: :cascade do |t|
+    t.string   "ch_id",            limit: 255
+    t.string   "name",             limit: 255
+    t.integer  "created",          limit: 4
+    t.string   "creator",          limit: 255
     t.boolean  "is_archived"
-    t.integer  "num_members"
-    t.string   "topic_value"
-    t.string   "topic_creator"
-    t.integer  "topic_last_set"
-    t.string   "purpose_value"
-    t.string   "purpose_creator"
-    t.integer  "purpose_last_set"
+    t.integer  "num_members",      limit: 4
+    t.string   "topic_value",      limit: 255
+    t.string   "topic_creator",    limit: 255
+    t.integer  "topic_last_set",   limit: 4
+    t.string   "purpose_value",    limit: 255
+    t.string   "purpose_creator",  limit: 255
+    t.integer  "purpose_last_set", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "loginusers", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-  end
-
-  add_index "loginusers", ["email"], name: "index_loginusers_on_email", unique: true, using: :btree
-  add_index "loginusers", ["reset_password_token"], name: "index_loginusers_on_reset_password_token", unique: true, using: :btree
-
-  create_table "posts", force: true do |t|
-    t.string   "post_type"
-    t.string   "user"
-    t.text     "text"
-    t.string   "ts"
+  create_table "posts", force: :cascade do |t|
+    t.string   "post_type",  limit: 255
+    t.string   "user",       limit: 255
+    t.text     "text",       limit: 65535
+    t.string   "ts",         limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "ts_date"
-    t.string   "ch_id"
+    t.string   "ch_id",      limit: 255
   end
 
-  create_table "stars", force: true do |t|
-    t.string   "post_type"
-    t.string   "ts"
-    t.string   "user"
-    t.text     "text"
+  create_table "stars", force: :cascade do |t|
+    t.string   "post_type",  limit: 255
+    t.string   "ts",         limit: 255
+    t.string   "user",       limit: 255
+    t.text     "text",       limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "starred_by"
+    t.string   "starred_by", limit: 255
     t.datetime "ts_date"
-    t.string   "ch_id"
+    t.string   "ch_id",      limit: 255
   end
 
-  create_table "users", force: true do |t|
-    t.string   "user_id"
-    t.string   "name"
+  create_table "users", force: :cascade do |t|
+    t.string   "user_id",            limit: 255
+    t.string   "name",               limit: 255
     t.boolean  "deleted"
-    t.string   "color"
-    t.string   "profile_first_name"
-    t.string   "profile_last_name"
-    t.string   "profile_real_name"
-    t.string   "profile_email"
-    t.string   "profile_skype"
-    t.string   "profile_phone"
-    t.string   "profile_image_24"
-    t.string   "profile_image_32"
-    t.string   "profile_image_48"
-    t.string   "profile_image_72"
-    t.string   "profile_image_192"
+    t.string   "color",              limit: 255
+    t.string   "profile_first_name", limit: 255
+    t.string   "profile_last_name",  limit: 255
+    t.string   "profile_real_name",  limit: 255
+    t.string   "profile_email",      limit: 255
+    t.string   "profile_skype",      limit: 255
+    t.string   "profile_phone",      limit: 255
+    t.string   "profile_image_24",   limit: 255
+    t.string   "profile_image_32",   limit: 255
+    t.string   "profile_image_48",   limit: 255
+    t.string   "profile_image_72",   limit: 255
+    t.string   "profile_image_192",  limit: 255
     t.boolean  "is_admin"
     t.boolean  "is_owner"
     t.boolean  "has_files"
@@ -94,26 +76,11 @@ ActiveRecord::Schema.define(version: 20160108221227) do
     t.datetime "updated_at"
   end
 
-  create_table "word_counts", force: true do |t|
-    t.string   "word"
-    t.integer  "count"
+  create_table "words", force: :cascade do |t|
+    t.string   "word",         limit: 255
+    t.integer  "count",        limit: 4
     t.boolean  "ignore_flag"
-    t.integer  "last_post_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "word_ignores", force: true do |t|
-    t.string   "word"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "words", force: true do |t|
-    t.string   "word"
-    t.integer  "count"
-    t.boolean  "ignore_flag"
-    t.integer  "last_post_id"
+    t.integer  "last_post_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
