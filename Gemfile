@@ -17,7 +17,7 @@ gem 'binding_of_caller'
 gem 'mecab'
 
 # specify ver due to security issues
-gem 'nokogiri', '~>1.6.7.0'
+gem 'nokogiri', '~>1.8.2'
 
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
@@ -25,7 +25,7 @@ gem 'mysql2', '~> 0.3.20'
 
 gem 'whenever', require: false
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2.5.1'
+gem 'rails', '~> 4.2.7.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
