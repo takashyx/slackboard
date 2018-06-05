@@ -8,7 +8,7 @@ gem 'chartkick'
 
 gem 'bootstrap-sass'
 
-gem 'rails_admin'
+gem 'rails_admin', '~>1.3.0'
 
 gem 'better_errors'
 
@@ -25,7 +25,7 @@ gem 'mysql2', '~> 0.3.20'
 
 gem 'whenever', require: false
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.1.0'
+gem 'rails', '~> 4.2.5.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
