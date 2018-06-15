@@ -82,7 +82,8 @@ namespace :slack do
   task :update_posts => :environment do
 
     if Channel.count == 0
-      puts 'No channels listed. please perform "rake handle_channel_info:update_list_of_channels" first.'
+      puts 'No channels listed. Perform "rake slack:update_channels" first. '
+      puts 'If you did "rake slack:first_time_crawl", maybe slack_token is not correct.'
     else
       uri = ""
 

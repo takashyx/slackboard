@@ -25,17 +25,22 @@ A dashboard rails app to visualise activities in Slack
 etc
 
 
-## Install
-rbenv, rbenv-gemsetで環境を確保した後
+# Install
+setup rbenv, rbenv-gemset
 
+## Slack integration
+```
+Set SLACK_TOKEN as an environment value
+```
+
+## prepare db
 ```
 # gem install bundler
 # bundle install
+# rake db:create
+# rake db:migrate
+# rake slack:first_time_crawl
 ```
-
-
-## Slack integration
-Set SLACK_TOKEN as an environment value
 
 example:
 
