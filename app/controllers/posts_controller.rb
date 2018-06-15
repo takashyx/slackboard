@@ -80,8 +80,17 @@ class PostsController < ApplicationController
   def peruser_chart_data
     peruser_data = Array.new
     User.all.each{|u|
-      peruser_data.push({name:u.name+"("+u.profile_real_name+")", data: Post.where(user: u.user_id, :ts_date => 2.week.ago...Time.now).group_by_day(:ts_date).order('ts_date ASC').count })
-    }
+        two_weeks = 2.week.ago.to_s(:db) ... Time.now().to_s(:db)
+
+        posts = Post.where(user: u.user_id, :ts_date => two_weeks)
+
+        if posts.count == 0
+          out_d = 0
+        else
+          out_d = posts.group_by_day(:ts_date).order('ts_date ASC').count
+        end
+          peruser_data.push({name:u.name+"("+u.profile_real_name+")", data:out_d} )
+      }
     render json: peruser_data
   end
 
@@ -95,13 +104,18 @@ class PostsController < ApplicationController
     per_data = Hash.new
     weekdays_count = Array.new(7, 0)
 
-    posts = Post.where(:ts_date => 1.month.ago...Time.now).group_by_day(:ts_date).order('ts_date ASC').count
-    posts.each{|p|
-      weekdays_count[Time.at(p[0]).wday] += p[1]
-    }
-    weekdays.each{|w|
-      per_data[weekdays_table.at(w)] = weekdays_count.at(w)
-    }
+    posts = Post.where(:ts_date => 1.month.ago.to_s(:db)...Time.now.to_s(:db))
+
+    if posts.count == 0
+
+      posts_count = posts.group_by_day(:ts_date).order('ts_date ASC').count
+      posts.each{|p|
+        weekdays_count[Time.at(p[0]).wday] += p[1]
+      }
+      weekdays.each{|w|
+        per_data[weekdays_table.at(w)] = weekdays_count.at(w)
+      }
+    end
 
     perweekday_data.push({name:"All Posts", data: per_data})
 
