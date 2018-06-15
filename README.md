@@ -13,6 +13,7 @@ A dashboard rails app to visualise activities in Slack
 ## Dependencies
 
 - rbenv
+- rbenv-gemset
 - unicorn
 - capistrano3
 - chartkick.js
@@ -22,6 +23,16 @@ A dashboard rails app to visualise activities in Slack
 
 
 etc
+
+
+## Install
+rbenv, rbenv-gemsetで環境を確保した後
+
+```
+# gem install bundler
+# bundle install
+```
+
 
 ## Slack integration
 Set SLACK_TOKEN as an environment value

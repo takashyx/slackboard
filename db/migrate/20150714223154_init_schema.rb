@@ -1,4 +1,4 @@
-class InitSchema < ActiveRecord::Migration
+class InitSchema < ActiveRecord::Migration[4.2]
   def up
     
     create_table "channels", force: true do |t|
